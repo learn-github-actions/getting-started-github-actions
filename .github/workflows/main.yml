@@ -47,7 +47,7 @@ jobs:
           git --version
           mvn --version
           ant -version
-          gradle --version 
+          gradle --version
           
       - name: Step 8 - Log the post-build disc space
         run: df  
