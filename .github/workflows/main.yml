@@ -7,29 +7,60 @@ name: Getting Started
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+	  # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Step 1: Log the pre-build disc space
+	    run: df
+	
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: step 2: Checkout the main GitHub branch
+	    uses: actions/checkout@v2 
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script 
-        run: env
+      - name: Step 3: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with: 
+          java-version: 1.8
+	
+	  # We are not going to run a Maven build here as the project
+	  # is not configured with a POM. But we echo the comman you would use
+      - name: Step 4: Build your your Jakarta web app with Maven
+        run: echo mvn -B package --file pom.xml
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Perhaps you would need to build your native app as well?
+      - name: Step 5: Build the native Android app
         run: |
-          echo Nothing to see in the multi-line script
-          echo Here is what is in the folder
-      
-          
+          echo Here is the ANDROID_SDK_ROOT
+          echo $ANDROID_SDK_ROOT
+		  
+	  # Run some tests on your builds with Selenium
+      - name: Step 6: Run your Selenium tests
+        run: |
+		  echo SELENIUM_JAR_PATH
+          echo $SELENIUM_JAR_PATH
+		  
+	  # Do some post-build logging
+      - name: Step 7: Log build tool versions
+        run: |
+          echo Git version:
+          git --version
+          echo Maven version:
+          mvn --version
+          echo Ant version:
+          ant -version
+          echo Gradle version:
+          gradle --version  
+		  
+	  # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Step 8: Log the post-build disc space
+	    run: df  
+		
