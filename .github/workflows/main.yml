@@ -32,10 +32,10 @@ jobs:
       - name: Step 4 - Build your your Jakarta web app with Maven
         run: echo mvn -B package --file pom.xml
         
-      - name: Step 5 - Build the native Android app
+      - name: Step 5 - Get-ExecutionPolicy
         run: |
-          echo Here is the ANDROID_SDK_ROOT
-          echo $ANDROID_SDK_ROOT
+          echo Get-ExecutionPolicy
+          Get-ExecutionPolicy
           
       - name: Step 6 - Run your Selenium tests
         run: |
@@ -76,7 +76,7 @@ jobs:
       - name: Step 5 - Build the native Android app
         run: |
           echo Here is the ANDROID_SDK_ROOT
-          echo $ANDROID_SDK_ROOT
+          Get-ExecutionPolicy
           
       - name: Step 6 - Run your Selenium tests
         run: |
