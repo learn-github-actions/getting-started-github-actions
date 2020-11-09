@@ -10,16 +10,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # The first job in this workflow is named build-on-windows
   build-on-windows:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
       - name: Step 1 - Log the pre-build disc space
-        run: dir
+        run: ls
         
       - name: step 2 - Checkout the main GitHub branch
         uses: actions/checkout@v2 
@@ -32,35 +32,24 @@ jobs:
       - name: Step 4 - Build your your Jakarta web app with Maven
         run: echo mvn -B package --file pom.xml
         
-      - name: Step 5 - Get-ExecutionPolicy
+      - name: Step 5 - Check Windows Execution Policy
         run: |
-          echo Get-ExecutionPolicy
+          echo Here is the Windows ExecutionPolicy:
           Get-ExecutionPolicy
           
-      - name: Step 6 - Run your Selenium tests
-        run: |
-          echo the SELENIUM_JAR_PATH
-          echo $SELENIUM_JAR_PATH
+      - name: Step 6 - List Windows Environment Variables
+        run: env
           
-      - name: Step 7 - Log build tool versions
-        run: |
-          git --version
-          mvn --version
-          ant -version
-          gradle --version
-          
-      - name: Step 8 - Log the post-build disc space
-        run: df  
-  # This workflow contains a single job called "build"
+  # This second job in this workflow is named build-on-ubnutu
   build-on-ubuntu:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
       - name: Step 1 - Log the pre-build disc space
-        run: dir
+        run: ls
         
       - name: step 2 - Checkout the main GitHub branch
         uses: actions/checkout@v2 
@@ -72,23 +61,6 @@ jobs:
 
       - name: Step 4 - Build your your Jakarta web app with Maven
         run: echo mvn -B package --file pom.xml
-        
-      - name: Step 5 - Build the native Android app
-        run: |
-          echo Here is the ANDROID_SDK_ROOT
-          Get-ExecutionPolicy
           
-      - name: Step 6 - Run your Selenium tests
-        run: |
-          echo the SELENIUM_JAR_PATH
-          echo $SELENIUM_JAR_PATH
-          
-      - name: Step 7 - Log build tool versions
-        run: |
-          git --version
-          mvn --version
-          ant -version
-          gradle --version
-          
-      - name: Step 8 - Log the post-build disc space
-        run: df  
+      - name: Step 5 - List Ubuntu Environment Variables
+        run: env
