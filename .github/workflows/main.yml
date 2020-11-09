@@ -40,7 +40,7 @@ jobs:
       - name: Step 6 - Run your Selenium tests
         run: |
           echo the SELENIUM_JAR_PATH
-          echo $ SELENIUM_JAR_PATH
+          echo $SELENIUM_JAR_PATH
           
       - name: Step 7 - Log build tool versions
         run: |
