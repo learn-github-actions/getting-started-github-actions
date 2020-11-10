@@ -23,7 +23,7 @@ jobs:
         run: ls
         
       - name: step 2 - Create some files in a directory named downloads
-        uses: |
+        run: |
           mkdir downloads
           cd downloads
           echo 'alpha'    > alpha.html
