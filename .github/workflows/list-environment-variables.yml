@@ -1,8 +1,8 @@
 # Publish GitHub workflow artifacts tutorial example
-name: Publish GitHub Actions Artifacts Example
+name: Environment Variables List
 on:
   push:
-    branches: [ main ]
+    branches: [ change-to-master-or-main ]
 jobs:
 
   github-actions-environment-variables-ubuntu:
