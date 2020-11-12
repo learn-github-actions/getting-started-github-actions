@@ -6,7 +6,7 @@ name: Getting Started
 # events but only for the main branch
 on:
   push:
-    branches: [ main ]
+    branches: [ change-to-main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
